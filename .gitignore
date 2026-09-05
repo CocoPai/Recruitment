@@ -1,0 +1,16 @@
+# Personal data and local backups
+*.json
+*.db
+*.sqlite
+*.sqlite3
+backups/
+data/
+
+# Local-only helper / retired files
+quick-actions.js
+wire-*.js
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
+.vscode/
