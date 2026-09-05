@@ -1,1 +1,4 @@
 .detail-modal{max-width:620px}.detail-summary{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0 20px}.detail-pill{background:#f6f5fb;border-radius:8px;padding:8px 11px;color:#74727f;font-size:11px}.detail-section{border-top:1px solid #f0f0f3;padding-top:16px;margin-top:15px}.detail-section h4{font-size:12px;margin:0 0 10px}.detail-section p{color:#858692;font-size:12px;line-height:1.8;white-space:pre-wrap;margin:0}.detail-empty{color:#aaa;font-size:12px;padding:15px 0}.detail-interview{background:#fafafe;border-radius:10px;padding:12px;margin:8px 0}.detail-interview strong{font-size:12px}.detail-interview small{color:#aaa;margin-left:8px}.detail-interview p{margin-top:7px;font-size:11px}
+
+.topbar>div:first-child{display:none}
+#export-btn,#import-btn,#import-file,#add-btn{display:none!important}
