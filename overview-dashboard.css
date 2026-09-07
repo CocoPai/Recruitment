@@ -1,0 +1,30 @@
+#overview-view .upcoming-panel {
+  margin-top: 0;
+}
+
+#overview-view .upcoming-panel .interview-row {
+  display: flex;
+  width: 100%;
+  padding: 10px 0;
+}
+
+#overview-view .upcoming-panel .interview-info {
+  min-width: 0;
+}
+
+#overview-view .upcoming-panel .interview-info strong,
+#overview-view .upcoming-panel .interview-info p {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#overview-view .overview-schedule-item {
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+#overview-view .overview-schedule-item:hover {
+  background: #faf9ff;
+}

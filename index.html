@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" /><link rel="stylesheet" href="enhancements.css" />
+  <link rel="stylesheet" href="styles.css" /><link rel="stylesheet" href="enhancements.css" /><link rel="stylesheet" href="overview-dashboard.css" />
 </head>
 <body>
   <div class="app-shell">
@@ -29,9 +29,9 @@
         <div class="stats-grid" id="stats-grid"></div>
         <div class="content-grid">
           <section class="panel pipeline-panel"><div class="panel-head"><div><span class="section-kicker">PIPELINE</span><h3>申请进展</h3></div><button class="text-btn" data-view-link="applications">查看全部 →</button></div><div class="pipeline" id="pipeline"></div></section>
-          <section class="panel next-panel"><div class="panel-head"><div><span class="section-kicker">UP NEXT</span><h3>接下来要做什么</h3></div><button class="icon-btn" id="add-task-btn">＋</button></div><div id="task-list" class="task-list"></div></section>
+
+          <section class="panel upcoming-panel"><div class="panel-head"><div><span class="section-kicker">CALENDAR</span><h3>即将到来的日程</h3></div><button class="text-btn" data-view-link="interviews">打开日程 →</button></div><div id="upcoming-list"></div></section>
         </div>
-        <section class="panel upcoming-panel"><div class="panel-head"><div><span class="section-kicker">CALENDAR</span><h3>即将到来的日程</h3></div><button class="text-btn" data-view-link="interviews">打开日程 →</button></div><div id="upcoming-list"></div></section>
       </section>
 
       <section id="applications-view" class="view"><div class="page-heading"><div><span class="section-kicker">APPLICATIONS</span><h2>岗位追踪</h2><p>把所有机会放在一个清晰的视野里。</p></div><button class="primary-btn" id="add-btn-2">＋ 新增岗位</button></div><div class="toolbar"><div class="search-box">⌕<input id="search-input" placeholder="搜索企业或岗位" /></div><div class="filter-pills" id="filter-pills"></div></div><div class="board" id="board"></div></section>
@@ -41,11 +41,11 @@
       <section id="prep-view" class="view"><div class="page-heading"><div><span class="section-kicker">PREP ROOM</span><h2>准备中心</h2><p>把零散的准备，沉淀成可复用的底气。</p></div></div><div class="prep-grid"><div class="panel prep-feature"><span class="prep-icon">✦</span><h3>面试前 30 分钟</h3><p>快速过一遍公司、岗位与自己的三个关键故事。</p><button class="outline-btn" id="quick-prep-btn">开始快速准备</button></div><div class="panel question-panel"><div class="panel-head"><div><span class="section-kicker">QUESTION BANK</span><h3>高频问题</h3></div><button class="icon-btn" id="add-question-btn">＋</button></div><div id="question-list"></div></div><div class="panel notes-panel"><span class="section-kicker">MY NOTES</span><h3>我的准备笔记</h3><textarea id="notes" placeholder="记录你的自我介绍、项目故事、反问问题……"></textarea><div class="note-footer"><span id="note-saved">自动保存</span><button class="text-btn" id="clear-notes">清空</button></div></div></div></section>
     </main>
   </div>
-  <div class="modal-backdrop" id="modal-backdrop"><div class="modal"><div class="modal-head"><h3 id="modal-title">新增岗位</h3><button class="close-btn" id="close-modal">×</button></div><form id="job-form"><div class="form-grid"><label>企业名称<input name="company" required placeholder="例如：字节跳动" /></label><label>岗位名称<input name="role" required placeholder="例如：产品经理" /></label><label>城市<input name="city" placeholder="北京 / 上海 / 远程" /></label><label>投递意愿<select name="priority" required><option value="">请选择投递意愿</option><option>随便投投</option><option>可以去</option><option>真想去</option><option>梦中情岗</option></select></label><label>当前阶段<select name="status" id="status-input"></select></label><label>下一步日期<input name="nextDate" type="date" /></label></div><label>投递/招聘链接<input name="url" type="url" placeholder="https://..." /></label><label>岗位要求<textarea name="requirements" placeholder="例如：负责用户增长；要求熟悉数据分析；需要 2 年产品经验……"></textarea></label><label>备注<textarea name="notes" placeholder="JD 关键词、联系人、准备方向……"></textarea></label><div class="form-actions"><button type="button" class="secondary-btn" id="cancel-modal">取消</button><button class="primary-btn" type="submit">保存岗位</button></div></form></div></div>
+  <div class="modal-backdrop" id="modal-backdrop"><div class="modal"><div class="modal-head"><h3 id="modal-title">新增岗位</h3><button class="close-btn" id="close-modal">×</button></div><form id="job-form"><div class="form-grid"><label>企业名称<input name="company" required placeholder="例如：字节跳动" /></label><label>岗位名称<input name="role" placeholder="例如：产品经理" /></label><label>城市<input name="city" placeholder="北京 / 上海 / 远程" /></label><label>投递意愿<select name="priority"><option value="">请选择投递意愿</option><option>随便投投</option><option>可以去</option><option>真想去</option><option>梦中情岗</option></select></label><label>当前阶段<select name="status" id="status-input"></select></label><label>下一步日期<input name="nextDate" type="date" /></label></div><label>投递/招聘链接<input name="url" type="url" placeholder="https://..." /></label><label>岗位要求<textarea name="requirements" placeholder="例如：负责用户增长；要求熟悉数据分析；需要 2 年产品经验……"></textarea></label><label>备注<textarea name="notes" placeholder="JD 关键词、联系人、准备方向……"></textarea></label><div class="form-actions"><button type="button" class="secondary-btn" id="cancel-modal">取消</button><button class="primary-btn" type="submit">保存岗位</button></div></form></div></div>
   <div class="modal-backdrop" id="interview-modal-backdrop"><div class="modal"><div class="modal-head"><h3>记录面试与复盘</h3><button class="close-btn" id="close-interview-modal">×</button></div><form id="interview-form"><div class="form-grid"><label>关联岗位<select name="jobId" id="interview-job-input" required></select></label><label>面试轮次<select name="round"><option>一面</option><option>二面</option><option>终面</option><option>HR面</option></select></label><label>面试日期<input name="date" type="date" required /></label><label>面试形式<select name="type"><option>视频面试</option><option>现场面试</option><option>电话面试</option></select></label></div><label>面试问题<textarea name="questions" placeholder="记下被问到的问题，方便后续复习……"></textarea></label><label>结果与反馈<textarea name="feedback" placeholder="表现如何？面试官反馈是什么？"></textarea></label><label>下一步改进<textarea name="improve" placeholder="下次面试要调整什么……"></textarea></label><div class="form-actions"><button type="button" class="secondary-btn" id="cancel-interview-modal">取消</button><button class="primary-btn" type="submit">保存复盘</button></div></form></div></div>
   <div class="modal-backdrop" id="detail-modal-backdrop"><div class="modal detail-modal"><div class="modal-head"><div><span class="section-kicker">JOB DETAIL</span><h3 id="detail-title">岗位详情</h3></div><button class="close-btn" id="close-detail-modal">×</button></div><div id="detail-content"></div><div class="form-actions"><button class="text-btn" id="detail-delete-btn">删除岗位</button><button class="secondary-btn" id="detail-edit-btn">编辑岗位</button><button class="primary-btn" id="detail-interview-btn">＋ 记录面试</button></div></div></div>
   <div class="toast" id="toast"></div><script src="app.js"></script><script src="interview.js"></script><script src="enhancements.js"></script><script src="fixes.js"></script><script src="overview-fixes.js"></script>
   <div class="toast" id="toast"></div><script src="app.js"></script><script src="interview.js"></script>
-<script src="parser.js"></script><script src="events.js"></script><script src="timeline.js"></script><script src="drag-actions.js"></script><script src="prep-answers.js"></script>
+<script src="parser.js"></script><script src="events.js"></script><script src="timeline.js"></script><script src="drag-actions.js"></script><script src="prep-answers.js"></script><script src="brand-editor.js"></script><script src="overview-dashboard.js"></script>
 </body>
 </html>

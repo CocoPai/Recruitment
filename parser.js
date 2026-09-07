@@ -1,4 +1,4 @@
-(function(){
+﻿(function(){
   const form=$('#job-form');if(!form)return;
   const panel=document.createElement('div');
   panel.className='smart-import';
@@ -12,7 +12,7 @@
   const requirementField=form.querySelector('[name="requirements"]');
   if(requirementField&&requirementField.parentElement)requirementField.parentElement.parentElement.insertBefore(descLabel,requirementField.parentElement);
   const typeLabel=document.createElement('label');
-  typeLabel.innerHTML='企业类型<select name="enterpriseType" required><option value="">请选择企业类型</option><option value="国央企">国央企</option><option value="私企">私企</option><option value="外企">外企</option></select>';
+  typeLabel.innerHTML='企业类型<select name="enterpriseType"><option value="">请选择企业类型</option><option value="国央企">国央企</option><option value="私企">私企</option><option value="外企">外企</option></select>';
   const cityField=form.querySelector('[name="city"]');
   if(cityField&&cityField.parentElement)cityField.parentElement.parentElement.insertBefore(typeLabel,cityField.parentElement.nextElementSibling);
   function find(pattern,text){const match=text.match(pattern);return match?match[1].trim():''}
