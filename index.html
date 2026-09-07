@@ -16,7 +16,7 @@
       <nav>
         <button class="nav-item active" data-view="overview"><span>◈</span>总览</button>
         <button class="nav-item" data-view="applications"><span>▦</span>岗位追踪</button>
-        <button class="nav-item" data-view="interviews"><span>◷</span>面试日程</button>
+        <button class="nav-item" data-view="interviews"><span>◷</span>秋招日程</button>
         <button class="nav-item" data-view="prep"><span>✦</span>准备中心</button>
       </nav>
       <div class="sidebar-footer"><div class="tip-icon">✧</div><p>保持节奏<br><b>每天推进 1% 就很棒</b></p></div>
@@ -31,12 +31,12 @@
           <section class="panel pipeline-panel"><div class="panel-head"><div><span class="section-kicker">PIPELINE</span><h3>申请进展</h3></div><button class="text-btn" data-view-link="applications">查看全部 →</button></div><div class="pipeline" id="pipeline"></div></section>
           <section class="panel next-panel"><div class="panel-head"><div><span class="section-kicker">UP NEXT</span><h3>接下来要做什么</h3></div><button class="icon-btn" id="add-task-btn">＋</button></div><div id="task-list" class="task-list"></div></section>
         </div>
-        <section class="panel upcoming-panel"><div class="panel-head"><div><span class="section-kicker">CALENDAR</span><h3>即将到来的面试</h3></div><button class="text-btn" data-view-link="interviews">打开日程 →</button></div><div id="upcoming-list"></div></section>
+        <section class="panel upcoming-panel"><div class="panel-head"><div><span class="section-kicker">CALENDAR</span><h3>即将到来的日程</h3></div><button class="text-btn" data-view-link="interviews">打开日程 →</button></div><div id="upcoming-list"></div></section>
       </section>
 
       <section id="applications-view" class="view"><div class="page-heading"><div><span class="section-kicker">APPLICATIONS</span><h2>岗位追踪</h2><p>把所有机会放在一个清晰的视野里。</p></div><button class="primary-btn" id="add-btn-2">＋ 新增岗位</button></div><div class="toolbar"><div class="search-box">⌕<input id="search-input" placeholder="搜索企业或岗位" /></div><div class="filter-pills" id="filter-pills"></div></div><div class="board" id="board"></div></section>
 
-      <section id="interviews-view" class="view"><div class="page-heading"><div><span class="section-kicker">INTERVIEWS</span><h2>面试日程</h2><p>提前准备，面后复盘，把每一轮都变成经验。</p></div><button class="primary-btn" id="add-interview-btn">＋ 记录面试</button></div><div class="interview-layout"><div class="panel calendar-card"><div class="calendar-title"><button>‹</button><h3 id="calendar-month"></h3><button>›</button></div><div class="weekdays"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div><div class="calendar-grid" id="calendar-grid"></div></div><div class="panel interview-detail"><div class="panel-head"><div><span class="section-kicker">SCHEDULE</span><h3>面试安排</h3></div></div><div id="all-interviews"></div></div></div></section>
+      <section id="interviews-view" class="view"><div class="page-heading"><div><span class="section-kicker">SCHEDULE</span><h2>秋招日程</h2><p>统一查看面试、报名截止和其他重要时间节点。</p></div><button class="primary-btn" id="add-interview-btn">＋ 记录面试</button></div><div class="interview-layout"><div class="panel calendar-card"><div class="calendar-title"><button>‹</button><h3 id="calendar-month"></h3><button>›</button></div><div class="weekdays"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div><div class="calendar-grid" id="calendar-grid"></div></div><div class="panel interview-detail"><div class="panel-head"><div><span class="section-kicker">SCHEDULE</span><h3>面试安排</h3></div></div><div id="all-interviews"></div></div></div></section>
 
       <section id="prep-view" class="view"><div class="page-heading"><div><span class="section-kicker">PREP ROOM</span><h2>准备中心</h2><p>把零散的准备，沉淀成可复用的底气。</p></div></div><div class="prep-grid"><div class="panel prep-feature"><span class="prep-icon">✦</span><h3>面试前 30 分钟</h3><p>快速过一遍公司、岗位与自己的三个关键故事。</p><button class="outline-btn" id="quick-prep-btn">开始快速准备</button></div><div class="panel question-panel"><div class="panel-head"><div><span class="section-kicker">QUESTION BANK</span><h3>高频问题</h3></div><button class="icon-btn" id="add-question-btn">＋</button></div><div id="question-list"></div></div><div class="panel notes-panel"><span class="section-kicker">MY NOTES</span><h3>我的准备笔记</h3><textarea id="notes" placeholder="记录你的自我介绍、项目故事、反问问题……"></textarea><div class="note-footer"><span id="note-saved">自动保存</span><button class="text-btn" id="clear-notes">清空</button></div></div></div></section>
     </main>
@@ -46,6 +46,6 @@
   <div class="modal-backdrop" id="detail-modal-backdrop"><div class="modal detail-modal"><div class="modal-head"><div><span class="section-kicker">JOB DETAIL</span><h3 id="detail-title">岗位详情</h3></div><button class="close-btn" id="close-detail-modal">×</button></div><div id="detail-content"></div><div class="form-actions"><button class="text-btn" id="detail-delete-btn">删除岗位</button><button class="secondary-btn" id="detail-edit-btn">编辑岗位</button><button class="primary-btn" id="detail-interview-btn">＋ 记录面试</button></div></div></div>
   <div class="toast" id="toast"></div><script src="app.js"></script><script src="interview.js"></script><script src="enhancements.js"></script><script src="fixes.js"></script><script src="overview-fixes.js"></script>
   <div class="toast" id="toast"></div><script src="app.js"></script><script src="interview.js"></script>
-<script src="parser.js"></script><script src="events.js"></script><script src="drag-actions.js"></script><script src="prep-answers.js"></script>
+<script src="parser.js"></script><script src="events.js"></script><script src="timeline.js"></script><script src="drag-actions.js"></script><script src="prep-answers.js"></script>
 </body>
 </html>
