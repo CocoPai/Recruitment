@@ -1,0 +1,219 @@
+#applications-view .board {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow: visible;
+}
+
+#applications-view .board-column {
+  display: grid;
+  grid-template-columns: 108px minmax(0, 1fr);
+  gap: 18px;
+  width: 100%;
+  min-width: 0;
+  min-height: 108px;
+  padding: 16px 18px;
+  overflow: visible;
+  transition: background .18s ease, outline-color .18s ease;
+}
+
+#applications-view .board-column.drag-over {
+  background: #e9e5ff;
+  outline: 2px dashed #9b8ff2;
+  outline-offset: -3px;
+}
+
+#applications-view .column-head {
+  justify-content: flex-start;
+  align-items: center;
+  align-self: start;
+  gap: 8px;
+  margin: 10px 0 0;
+  font-size: 13px;
+}
+
+#applications-view .column-count {
+  min-width: 22px;
+  text-align: center;
+}
+
+.company-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  align-items: start;
+  gap: 12px;
+  min-width: 0;
+  min-height: 76px;
+}
+
+.stage-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 74px;
+  border: 1px dashed #dedce8;
+  border-radius: 12px;
+  color: #b5b3bf;
+  font-size: 12px;
+}
+
+.company-group-card {
+  min-width: 0;
+  overflow: visible;
+  border: 1px solid #eceaf2;
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 0 3px 10px rgba(36, 33, 54, .04);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.company-group-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 20px rgba(37, 31, 75, .08);
+}
+
+.company-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 40px;
+  padding: 6px 13px;
+  border-bottom: 1px solid #e8e5f3;
+  background: #f6f4fc;
+  border-radius: 12px 12px 0 0;
+}
+
+.company-card-header strong {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.company-card-header .enterprise-type-chip {
+  flex: 0 0 auto;
+  margin-top: 0;
+}
+
+.company-role-list {
+  background: #fff;
+  border-radius: 0 0 12px 12px;
+}
+
+#applications-view .company-role-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 46px;
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: 0;
+  background: #fff;
+  box-shadow: none;
+  transition: background .16s ease, padding-left .16s ease;
+}
+
+.company-role-main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: 4px;
+  position: relative;
+}
+
+#applications-view .company-role-row + .company-role-row {
+  border-top: 1px solid #f0eff4;
+}
+
+#applications-view .company-role-row:hover {
+  padding-left: 18px;
+  background: #faf9ff;
+}
+
+.company-role-name {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  white-space: nowrap;
+  -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 28px), transparent 100%);
+  mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 28px), transparent 100%);
+}
+
+.company-role-tooltip {
+  position: absolute;
+  top: calc(100% + 7px);
+  left: 0;
+  z-index: 20;
+  width: max-content;
+  max-width: min(360px, calc(100vw - 48px));
+  padding: 7px 10px;
+  border: 1px solid #e8e5f3;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(37, 31, 75, .14);
+  color: #34323f;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.45;
+  white-space: normal;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-3px);
+  transition: opacity .14s ease, transform .14s ease, visibility .14s ease;
+}
+
+.company-role-main:hover .company-role-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.company-role-location {
+  overflow: hidden;
+  max-width: 100%;
+  color: #9b99a8;
+  font-size: 11px;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.company-role-row .status-chip {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 900px) {
+  #applications-view .board-column {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  #applications-view .column-head {
+    margin-top: 0;
+  }
+
+  .company-groups {
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .company-groups {
+    grid-template-columns: 1fr;
+  }
+}

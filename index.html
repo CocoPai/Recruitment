@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" /><link rel="stylesheet" href="enhancements.css" /><link rel="stylesheet" href="overview-dashboard.css" />
+  <link rel="stylesheet" href="styles.css" /><link rel="stylesheet" href="enhancements.css" /><link rel="stylesheet" href="overview-dashboard.css" /><link rel="stylesheet" href="grouped-board.css" />
 </head>
 <body>
   <div class="app-shell">
@@ -45,7 +45,6 @@
   <div class="modal-backdrop" id="interview-modal-backdrop"><div class="modal"><div class="modal-head"><h3>记录面试与复盘</h3><button class="close-btn" id="close-interview-modal">×</button></div><form id="interview-form"><div class="form-grid"><label>关联岗位<select name="jobId" id="interview-job-input" required></select></label><label>面试轮次<select name="round"><option>一面</option><option>二面</option><option>终面</option><option>HR面</option></select></label><label>面试日期<input name="date" type="date" required /></label><label>面试形式<select name="type"><option>视频面试</option><option>现场面试</option><option>电话面试</option></select></label></div><label>面试问题<textarea name="questions" placeholder="记下被问到的问题，方便后续复习……"></textarea></label><label>结果与反馈<textarea name="feedback" placeholder="表现如何？面试官反馈是什么？"></textarea></label><label>下一步改进<textarea name="improve" placeholder="下次面试要调整什么……"></textarea></label><div class="form-actions"><button type="button" class="secondary-btn" id="cancel-interview-modal">取消</button><button class="primary-btn" type="submit">保存复盘</button></div></form></div></div>
   <div class="modal-backdrop" id="detail-modal-backdrop"><div class="modal detail-modal"><div class="modal-head"><div><span class="section-kicker">JOB DETAIL</span><h3 id="detail-title">岗位详情</h3></div><button class="close-btn" id="close-detail-modal">×</button></div><div id="detail-content"></div><div class="form-actions"><button class="text-btn" id="detail-delete-btn">删除岗位</button><button class="secondary-btn" id="detail-edit-btn">编辑岗位</button><button class="primary-btn" id="detail-interview-btn">＋ 记录面试</button></div></div></div>
   <div class="toast" id="toast"></div><script src="app.js"></script><script src="interview.js"></script><script src="enhancements.js"></script><script src="fixes.js"></script><script src="overview-fixes.js"></script>
-  <div class="toast" id="toast"></div><script src="app.js"></script><script src="interview.js"></script>
-<script src="parser.js"></script><script src="events.js"></script><script src="timeline.js"></script><script src="drag-actions.js"></script><script src="prep-answers.js"></script><script src="brand-editor.js"></script><script src="overview-dashboard.js"></script>
+<script src="parser.js"></script><script src="events.js"></script><script src="timeline.js"></script><script src="job-history.js?v=20260916c"></script><script src="drag-actions.js"></script><script src="prep-answers.js"></script><script src="brand-editor.js"></script><script src="overview-dashboard.js"></script><script src="grouped-board.js"></script>
 </body>
 </html>
