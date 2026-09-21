@@ -23,10 +23,49 @@ $('#detail-delete-btn').onclick=()=>{
   jobs=jobs.filter(j=>j.id!==detailJobId);interviews=interviews.filter(i=>i.jobId!==detailJobId);
   save();closeJobDetail();render();showToast('岗位及关联复盘已删除');
 };
+const exportNodeLabels={'已测评':'测评','已笔试':'笔试','已一面':'一面','已二面':'二面','已终面':'终面','Offer':'Offer','已挂':'挂岗','拒绝':'拒绝'};
+const exportDate=value=>/^\d{4}-\d{2}-\d{2}$/.test(value||'')?value.slice(5):'';
+function exportHistory(job){
+  const history=Array.isArray(job.stageHistory)&&job.stageHistory.length?job.stageHistory:[{status:job.status||'想投递',date:''}];
+  return history.map((entry,index)=>({...entry,index})).sort((a,b)=>{
+    if(!a.date&&!b.date)return a.index-b.index;
+    if(!a.date)return 1;
+    if(!b.date)return -1;
+    return a.date.localeCompare(b.date)||a.index-b.index;
+  });
+}
+function csvCell(value,forceQuote=false){
+  let text=String(value??'');
+  if(/^[=+\-@]/.test(text))text="'"+text;
+  const escaped=text.replace(/"/g,'""');
+  return forceQuote||/[",\r\n]/.test(text)?'"'+escaped+'"':escaped;
+}
+$('#export-btn').textContent='导出投递记录';
 $('#export-btn').onclick=()=>{
-  const data={version:1,exportedAt:new Date().toISOString(),jobs,interviews,tasks,customQuestions:JSON.parse(localStorage.getItem('recruitment-custom-questions')||'[]'),notes:localStorage.getItem('recruitment-notes')||''};
-  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='秋招作战台备份-'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(a.href);showToast('备份已导出');
+  const records=jobs.map((job,index)=>{
+    const history=exportHistory(job),applied=history.find(entry=>entry.status==='已投递');
+    return {job,history,applied,index};
+  }).filter(item=>item.history.some(entry=>entry.status!=='想投递')).sort((a,b)=>{
+    const aDate=a.applied?.date||'',bDate=b.applied?.date||'';
+    if(!aDate&&!bDate)return a.index-b.index;
+    if(!aDate)return 1;
+    if(!bDate)return -1;
+    return aDate.localeCompare(bDate)||a.index-b.index;
+  });
+  if(!records.length){showToast('暂无可导出的投递记录');return;}
+  const rows=records.map(({job,history,applied})=>{
+    const appliedDate=applied?exportDate(applied.date):'';
+    const appliedText=applied?'投递'+(appliedDate?'（'+appliedDate+'）':''):'';
+    const completed=history.filter(entry=>exportNodeLabels[entry.status]).map(entry=>{
+      const label=exportNodeLabels[entry.status],date=exportDate(entry.date);
+      return label+(date?'（'+date+'）':'');
+    }).join(' → ');
+    return [csvCell(job.company),csvCell(job.role),csvCell(appliedText),csvCell(completed,true)].join(',');
+  });
+  const csv='\ufeff'+rows.join('\r\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download='秋招投递记录_'+new Date().toISOString().slice(0,10)+'.csv';a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),0);showToast('已导出 '+records.length+' 条投递记录');
 };
 $('#import-btn').onclick=()=>$('#import-file').click();
 $('#import-file').addEventListener('change',e=>{
